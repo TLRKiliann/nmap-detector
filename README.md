@@ -13,13 +13,21 @@
 
 Detection of nmap intrusion attempts.
 
+## ✨ Features
+
+- 🔍 **Real-time detection** - Captures SYN scans as they happen
+- 📊 **Clear output** - Human-readable alerts with timestamps
+- 🎯 **Multi-interface** - Works on loopback, Ethernet, or WiFi
+- 🛡️ **Educational** - Learn how Nmap stealth techniques work
+- 🐍 **Pure Python** - Built with Scapy, no proprietary dependencies
+
 ## Installation
 
-`git clone ...`
+`git clone https://github.com/TLRKiliann/nmap-detector.git`
 
 **Activate**
 
-`source my-appy/venv/bin/activate`
+`source nmap-detector/venv/bin/activate`
 
 **Go to nmap-detector (folder)**
 
@@ -73,7 +81,7 @@ You can change choose the right sniff():
         print("Essayez: sudo python3 script.py")
 ```
 
-## nmap security
+## 🛡️ Understanding Nmap stealth levels
 
 ```
 -T0 (Paranoid)      → More stealthy, but impractical on large targets
@@ -133,5 +141,19 @@ Warning: These decoy IPs will also receive responses from the target (side effec
 nmap -sS -p- -T2 --max-retries 1 --min-rate 10 <IP>
 # --min-rate 10 = at least 10 packets per second (much faster but quiet)
 ```
+
+## 🤝 Contributing
+
+Found a bug? Have an idea? Open an [issue](https://github.com/TLRKiliann/nmap-detector/issues) or submit a PR.
+
+## ⭐ Support
+
+If this tool helped you understand network security better, **star this repo** to help others find it!
+
+<div align="center">
+
+Made with 🐍 and ☕ by [TLRKiliann](https://github.com/TLRKiliann)
+
+</div>
 
 Enjoy :koala: !
