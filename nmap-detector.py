@@ -72,15 +72,17 @@ def main():
     
     try:
         # Linux
-        sniff(iface="lo", prn=detector.packet_callback, store=0)  # loopback
-        #sniff(iface="eth0", prn=detector.packet_callback, store=0)  # Ethernet
-        #sniff(iface="wlan0", prn=detector.packet_callback, store=0) # WiFi
+        sniff(iface="lo", prn=detector.packet_callback, store=0)        # loopback
+        #sniff(iface="eth0", prn=detector.packet_callback, store=0)     # Ethernet
+        #sniff(iface="wlan0", prn=detector.packet_callback, store=0)    # WiFi
         # MacOS
-        #sniff(iface="lo0", prn=detector.packet_callback, store=0) # loopback
-        #sniff(iface="en0", prn=detector.packet_callback, store=0) # Ethernet
-        #sniff(iface="en1", prn=detector.packet_callback, store=0) # Wifi
+        #sniff(iface="lo0", prn=detector.packet_callback, store=0)  # loopback
+        #sniff(iface="en0", prn=detector.packet_callback, store=0)  # Ethernet
+        #sniff(iface="en1", prn=detector.packet_callback, store=0)  # Wifi
         # Windows
-        #sniff(iface="Ethernet", prn=detector.package_callback, store=0) # Ethernet
+        #sniff(iface="Loopback Pseudo-Interface 1", prn=detector.package_callback, store=0) # loopback
+        #sniff(iface="Ethernet", prn=detector.package_callback, store=0) # Ethernet         # Ethernet
+        #sniff(iface="Wi-Fi", prn=detector.package_callback, store=0)                       # Wifi
     except Exception as e:
         print(f"Erreur: {e}")
         print("Try: sudo python3 nmap-detector.py")
