@@ -21,35 +21,33 @@ Detection of nmap intrusion attempts.
 - 🛡️ **Educational** - Learn how Nmap stealth techniques work
 - 🐍 **Pure Python** - Built with Scapy, no proprietary dependencies
 
-## Installation
 
-`git clone https://github.com/TLRKiliann/nmap-detector.git`
+## 📦 Installation
 
-**Activate**
+```bash
+# Clone the repository
+git clone https://github.com/TLRKiliann/nmap-detector.git
 
-`source nmap-detector/venv/bin/activate`
+# Go to the project folder
+cd nmap-detector
 
-**Go to nmap-detector (folder)**
+# Activate virtual environment
+source venv/bin/activate
 
-`cd nmap-detector`
+# Install scapy
+pip install scapy
 
-`pip install scapy`
+# Selective update
+`pip install --upgrade scapy` 
 
+`pip freeze > requirements.txt`
 
-**Selective update**
-
-`pip install --upgrade scapy pip freeze > requirements.txt`
-
-
-**Update all versions**
-
+# Update all versions**
 `pip install -r requirements.txt`
 
-
-**Update to the latest compatible versions**
-
+# Update to the latest compatible versions
 `pip install --upgrade -r requirements.txt`
-
+```
 
 ## Run app
 
@@ -152,8 +150,8 @@ If this tool helped you understand network security better, **star this repo** t
 
 <div align="center">
 
-Made with 🐍 and ☕ by [:koala:](https://github.com/TLRKiliann)
+Made with 🐍 and ☕ by [me](https://github.com/TLRKiliann)
 
 </div>
 
-Enjoy !
+Enjoy :koala: !
