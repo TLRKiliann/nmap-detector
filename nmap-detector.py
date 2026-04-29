@@ -61,7 +61,7 @@ class PortScanDetector:
             if len(self.history[src]) >= threshold:
                 if now - self.last_alert[src] > 30:
                     self.last_alert[src] = now
-                    print(f"\n🚨 SCAN {scan_type.upper()} detected of {src}")
+                    print(f"\n🚨 SCAN {scan_type.upper()} detected from {src}")
                     print(f"   {len(self.history[src])} SYN recieved")
                     print(f"   Last port: {port}\n")
                     break
