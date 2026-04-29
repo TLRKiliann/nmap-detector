@@ -30,54 +30,82 @@ git clone https://github.com/TLRKiliann/nmap-detector.git
 # Go to the project folder
 cd nmap-detector
 
-# Activate virtual environment
+# Create & activate virtual environment
+python3 -m venv venv
+
 source venv/bin/activate
 
-# Install scapy
-pip install scapy
+# Update all versions**
+pip install -r requirements.txt
 
 # Selective update
-`pip install --upgrade scapy` 
+pip install --upgrade scapy
 
-`pip freeze > requirements.txt`
+pip freeze > requirements.txt
 
-# Update all versions**
-`pip install -r requirements.txt`
-
-# Update to the latest compatible versions
-`pip install --upgrade -r requirements.txt`
+# Or update to the latest compatible versions
+pip install --upgrade -r requirements.txt
 ```
 
-## Run app
+## Run app 
 
-:warning: It's not possible to read detection with firewall !
+**In Localhost**
 
-**Terminal n°1**
+Terminal n°1
 
 `sudo nmap -sS -p 1-6000 -T3 127.0.0.1`
 
-**Terminal n°2**
+Terminal n°2
 
 `sudo python3 nmap-detector.py`
 
-You can change choose the right sniff():
+or if you get trouble with Linux:
+
+`sudo venv/bin/python nmap-detector.py`
+
+Choose the right sniff():
 
 ```
     ...
     try:
-        # MacOS (localhost)
-        sniff(iface="lo0", prn=detector.packet_callback, store=0)
-        #sniff(iface="en0", prn=detector.packet_callback, store=0)
-        #sniff(iface="en1", prn=detector.packet_callback, store=0)
-
-        # Linux (nothing checked)
-        #sniff(iface="lo", prn=detector.packet_callback, store=0)  # loopback
+        # Linux
+        
+        sniff(iface="lo", prn=detector.packet_callback, store=0)  # loopback
+        
         #sniff(iface="eth0", prn=detector.packet_callback, store=0)  # Ethernet
         #sniff(iface="wlan0", prn=detector.packet_callback, store=0) # WiFi
+        # MacOS
+        #sniff(iface="lo0", prn=detector.packet_callback, store=0) # loopback
+        #sniff(iface="en0", prn=detector.packet_callback, store=0) # Ethernet
+        #sniff(iface="en1", prn=detector.packet_callback, store=0) # Wifi
+        # Windows
+        #sniff(iface="Ethernet", prn=detector.package_callback, store=0) # Ethernet
     except Exception as e:
         print(f"Erreur: {e}")
         print("Essayez: sudo python3 script.py")
     ...
+```
+
+**With Ethernet**
+
+:warning: It's not possible to read detection with firewall !
+
+Terminal n°1
+
+`sudo nmap -sS -p 1-6000 -T3 192.168.10.22`
+
+Terminal n°2
+
+`sudo python3 nmap-detector.py`
+
+or if you get trouble with Linux:
+
+`sudo venv/bin/python nmap-detector.py`
+
+Choose the right sniff():
+
+```
+    sniff(iface="eth0", prn=detector.packet_callback, store=0)  # Ethernet
 ```
 
 ## 🛡️ Understanding Nmap stealth levels
