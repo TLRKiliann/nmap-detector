@@ -13,15 +13,6 @@
 
 Detection of nmap intrusion attempts.
 
-```
--T0 (Paranoid)      → More stealthy, but impractical on large targets
--T1 (Sneaky)        → Very stealthy, usable in real-world conditions
--T2 (Polite)        → Moderately stealthy
--T3 (Normal)        → Default behavior, detectable on sensitive networks
--T4 (Aggressive)    → Easily detectable
--T5 (Insane)        → Extremely detectable, packet loss possible
-```
-
 ## Installation
 
 `git clone ...`
@@ -68,10 +59,12 @@ You can change choose the right sniff():
 
 ```
     try:
-        # MacOS
+        # MacOS (localhost)
         sniff(iface="lo0", prn=detector.packet_callback, store=0)
+        #sniff(iface="en0", prn=detector.packet_callback, store=0)
         #sniff(iface="en1", prn=detector.packet_callback, store=0)
-        # Linux
+
+        # Linux (nothing checked)
         #sniff(iface="lo", prn=detector.packet_callback, store=0)  # loopback
         #sniff(iface="eth0", prn=detector.packet_callback, store=0)  # Ethernet
         #sniff(iface="wlan0", prn=detector.packet_callback, store=0) # WiFi
@@ -81,6 +74,15 @@ You can change choose the right sniff():
 ```
 
 ## nmap security
+
+```
+-T0 (Paranoid)      → More stealthy, but impractical on large targets
+-T1 (Sneaky)        → Very stealthy, usable in real-world conditions
+-T2 (Polite)        → Moderately stealthy
+-T3 (Normal)        → Default behavior, detectable on sensitive networks
+-T4 (Aggressive)    → Easily detectable
+-T5 (Insane)        → Extremely detectable, packet loss possible
+```
 
 - :-1: Don't use
 
