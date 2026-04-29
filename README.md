@@ -21,7 +21,6 @@ Detection of nmap intrusion attempts.
 - 🛡️ **Educational** - Learn how Nmap stealth techniques work
 - 🐍 **Pure Python** - Built with Scapy, no proprietary dependencies
 
-
 ## 📦 Installation
 
 ```bash
@@ -64,6 +63,7 @@ pip install scapy
 You can change choose the right sniff():
 
 ```
+    ...
     try:
         # MacOS (localhost)
         sniff(iface="lo0", prn=detector.packet_callback, store=0)
@@ -77,6 +77,7 @@ You can change choose the right sniff():
     except Exception as e:
         print(f"Erreur: {e}")
         print("Essayez: sudo python3 script.py")
+    ...
 ```
 
 ## 🛡️ Understanding Nmap stealth levels
