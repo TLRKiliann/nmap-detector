@@ -1,0 +1,26 @@
+# Python virtual environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Bytecode Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Fichiers d'installation
+*.egg
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Fichiers système
+.DS_Store
+Thumbs.db
