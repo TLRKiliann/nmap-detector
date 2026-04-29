@@ -1,8 +1,8 @@
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                 ┃
-┃    ⚡  nmap-detector  v1.0      ┃
-┃                                 ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
++-----------------------------------+
+|                                   |
+|        ⚡ nmap-detector v1.0       |
+|                                   |
++-----------------------------------+
 
 Detection of nmap intrusion attempts.
 
@@ -19,18 +19,18 @@ Detection of nmap intrusion attempts.
 
 `git clone ...`
 
-**Activer**
+**Activate**
 
 `source my-appy/venv/bin/activate`
 
-**Se rendre dedans my-appy**
+**Go to my-appy**
 
 `cd my-appy`
 
 `pip install scapy`
 
 
-**MAJ sélective**
+**Selective update**
 
 `pip install --upgrade scapy pip freeze > requirements.txt`
 
@@ -47,7 +47,7 @@ Detection of nmap intrusion attempts.
 
 ## Run app
 
-:warning: It's not possible to read detection wit firewall !
+:warning: It's not possible to read detection with firewall !
 
 **Terminal n°1**
 
@@ -61,10 +61,10 @@ You can change choose the right sniff():
 
 ```
     try:
-        # Sur macOS, spécifier l'interface est crucial
+        # MacOS
         sniff(iface="lo0", prn=detector.packet_callback, store=0)
         #sniff(iface="en1", prn=detector.packet_callback, store=0)
-        # Sur Linux
+        # Linux
         #sniff(iface="lo", prn=detector.packet_callback, store=0)  # loopback
         #sniff(iface="eth0", prn=detector.packet_callback, store=0)  # Ethernet
         #sniff(iface="wlan0", prn=detector.packet_callback, store=0) # WiFi
@@ -75,24 +75,29 @@ You can change choose the right sniff():
 
 ## nmap security
 
-- :-1: Option plus discrète (mais très lente)
+- :-1: Don't use
+
+`nmap -sS -p- -T4 (or T5) <IP>`
+
+
+- :+1: A more discreet option (but very slow)
 
 `nmap -sS -p- -T2 <IP>`      # Polite mode
 
-`nmap -sS -p- -T1 <IP>`      # Sneaky mode (encore plus lent)
+`nmap -sS -p- -T1 <IP>`      # Sneaky mode (more slowly)
 
 
-- :timer_clock: Contrôle fin du délai
+- :timer_clock: Final deadline check
 
 `nmap -sS -p- --scan-delay 500ms --max-rtt-timeout 1500ms <IP>`
 
 
-- :fairy: Utilise le port 80 (HTTP) comme port source - plus anodin
+- :fairy: Use port 80 (HTTP) as the source port—less conspicuous
 
 `nmap -sS -p- --source-port 80 <IP>`
 
 
-- :ballot_box_with_check: Discrétion maximale : lent + fragments + leurres + port source
+- :ballot_box_with_check: Maximum stealth: slow + shards + decoys + source port
 
 `nmap -sS -p- -T2 -f -D RND:10 --source-port 80 --scan-delay 1s <IP>`
 
@@ -100,25 +105,24 @@ You can change choose the right sniff():
 
 -D RND:10 
 
-Delay d'une seconde => trop long (24-36 heures)
+One-second delay => too long (24–36 hours)
 
-Nmap génère aléatoirement 10 adresses IP
+Nmap randomly generates 10 IP addresses
 
-Parmi ces 10, l'une d'elles sera votre vraie IP
+One of these 10 will be your real IP address
 
-Les 9 autres sont des IPs aléatoires qui existent probablement (ou pas - Nmap ne vérifie pas)
+The other 9 are random IP addresses that may or may not exist (Nmap does not verify them)
 
-Attention : Ces IPs leurres recevront aussi les réponses de la cible (effet de bord)
+Warning: These decoy IPs will also receive responses from the target (side effect)
 
-
-- :white_check_mark: Discrétion maximale sans générer d'IPs invalides :
+- :white_check_mark: Maximum discretion without generating invalid IP addresses
 
 `nmap -sS -p- -T1 -f --scan-delay 2s --data-length 200 <IP>`
 
 ```
-# Discrétion + temps raisonnable (pour un réseau surveillé)
+# Discretion + reasonable time (for a monitored network)
 nmap -sS -p- -T2 --max-retries 1 --min-rate 10 <IP>
-# --min-rate 10 = minimum 10 paquets/seconde (bien plus rapide mais discret)
+# --min-rate 10 = at least 10 packets per second (much faster but quiet)
 ```
 
 Enjoy :koala: !
