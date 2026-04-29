@@ -1,12 +1,10 @@
-# nmap-detector
+<div align="center">
+  
+# ⚡ nmap-detector v1.0
 
-```
-+------------------------------------+
-|                                    |
-|        ⚡ nmap-detector v1.0        |
-|                                    |
-+------------------------------------+
-```
+*Network scanning tool*
+
+</div>
 
 Detection of nmap intrusion attempts.
 
