@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
 '''
-from scapy.all import sniff, IP, TCP
-from collections import defaultdict
-from datetime import datetime
-import time
+####################################
+#                                  #
+#        nmap-detector v1.0        #
+#                                  #
+####################################
 '''
 
 import sys
@@ -14,10 +15,10 @@ from collections import defaultdict
 from datetime import datetime
 import time
 
-# 🔥 CORRECTIONS POUR macOS
-conf.debug_dissector = False  # Désactiver le debug
-warnings.filterwarnings("ignore")  # Ignorer les warnings
-sys.setrecursionlimit(10000)  # Augmenter limite récursion
+# Especially for MacOS
+conf.debug_dissector = False  # Deactivate debug
+warnings.filterwarnings("ignore")  # Ignore warnings
+sys.setrecursionlimit(10000)  # Iterative limit increase
 
 class PortScanDetector:
     def __init__(self):
@@ -34,7 +35,7 @@ class PortScanDetector:
             return
         
         flags = packet[TCP].flags
-        # Vérification robuste des flags
+        # Verify flags
         syn = (flags & 0x02) != 0  # Bit SYN
         ack = (flags & 0x10) != 0  # Bit ACK
         
@@ -45,8 +46,8 @@ class PortScanDetector:
         port = packet[TCP].dport
         now = time.time()
         
-        # Conversion explicite pour éviter les erreurs de type
-        window = 30  # secondes
+        # To avoid error of type
+        window = 30  # seconds
         self.history[src] = [
             (float(ts), int(p)) for ts, p in self.history[src] 
             if float(now) - float(ts) < float(window)
@@ -54,33 +55,35 @@ class PortScanDetector:
         
         self.history[src].append((float(now), int(port)))
         
-        print(f"[*] SYN de {src} vers port {port} (total: {len(self.history[src])})")
+        print(f"[*] SYN from {src} to port {port} (total: {len(self.history[src])})")
         
-        # Vérification seuil
         for scan_type, threshold in self.scan_patterns.items():
             if len(self.history[src]) >= threshold:
                 if now - self.last_alert[src] > 30:
                     self.last_alert[src] = now
-                    print(f"\n🚨 SCAN {scan_type.upper()} détecté depuis {src}")
-                    print(f"   {len(self.history[src])} SYN reçus")
-                    print(f"   Dernier port: {port}\n")
+                    print(f"\n🚨 SCAN {scan_type.upper()} detected of {src}")
+                    print(f"   {len(self.history[src])} SYN recieved")
+                    print(f"   Last port: {port}\n")
                     break
 
 def main():
-    print("=== DÉTECTEUR Nmap -sS (macOS) ===")
+    print("=== Nmap Detector v1.0 ===")
     detector = PortScanDetector()
     
     try:
-        # Sur macOS, spécifier l'interface est crucial
-        sniff(iface="lo0", prn=detector.packet_callback, store=0)
-        #sniff(iface="en1", prn=detector.packet_callback, store=0)
-        # Sur Linux
-        #sniff(iface="lo", prn=detector.packet_callback, store=0)  # loopback
+        # Linux
+        sniff(iface="lo", prn=detector.packet_callback, store=0)  # loopback
         #sniff(iface="eth0", prn=detector.packet_callback, store=0)  # Ethernet
         #sniff(iface="wlan0", prn=detector.packet_callback, store=0) # WiFi
+        # MacOS
+        #sniff(iface="lo0", prn=detector.packet_callback, store=0) # loopback
+        #sniff(iface="en0", prn=detector.packet_callback, store=0) # Ethernet
+        #sniff(iface="en1", prn=detector.packet_callback, store=0) # Wifi
+        # Windows
+        #sniff(iface="Ethernet", prn=detector.package_callback, store=0) # Ethernet
     except Exception as e:
         print(f"Erreur: {e}")
-        print("Essayez: sudo python3 script.py")
+        print("Try: sudo python3 nmap-detector.py")
 
 if __name__ == "__main__":
     main()
