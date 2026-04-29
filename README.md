@@ -21,7 +21,7 @@ Detection of nmap intrusion attempts.
 
 `source my-appy/venv/bin/activate`
 
-**Go to my-appy**
+**Go to nmap-detector (folder)**
 
 `cd my-appy`
 
