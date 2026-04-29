@@ -4,6 +4,11 @@
 
 *Network scanning tool*
 
+[![Stars](https://img.shields.io/github/stars/TLRKiliann/nmap-detector?style=social)](https://github.com/TLRKiliann/nmap-detector/stargazers)
+[![Made with Python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://python.org)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/TLRKiliann/nmap-detector)](https://github.com/TLRKiliann/nmap-detector)
+
 </div>
 
 Detection of nmap intrusion attempts.
