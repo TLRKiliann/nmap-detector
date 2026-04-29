@@ -152,8 +152,8 @@ If this tool helped you understand network security better, **star this repo** t
 
 <div align="center">
 
-Made with 🐍 and ☕ by [TLRKiliann](https://github.com/TLRKiliann)
+Made with 🐍 and ☕ by [:koala:](https://github.com/TLRKiliann)
 
 </div>
 
-Enjoy :koala: !
+Enjoy !
