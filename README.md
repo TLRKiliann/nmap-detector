@@ -23,7 +23,7 @@ Detection of nmap intrusion attempts.
 
 **Go to nmap-detector (folder)**
 
-`cd my-appy`
+`cd nmap-detector`
 
 `pip install scapy`
 
